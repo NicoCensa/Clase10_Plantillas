@@ -1,0 +1,88 @@
+<h1>Formulario Ingreso Producto</h1>
+<!--
+    <form class="mb-3" id="productos" action='/api/productos' method="post">
+        <div class="mb-3">
+          <label for="id" class="form-label">id:</label>
+          <input type="number" class="form-control" id="id" name="id">
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">title:</label>
+          <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">price:</label>
+            <input type="number" class="form-control" id="price" name="price">
+          </div>
+          <div class="mb-3">
+            <label for="thumbnail" class="form-label">thumbnail:</label>
+            <input type="text" class="form-control" id="thumbnail" name="thumbnail">
+          </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  -->
+  <form class="mb-3" id="newProduct">
+    <div class="mb-3">
+      <input type="number" name="id" id="id" placeholder="ID">
+    </div>
+    <div class="mb-3">
+      <input type="text" name="title" id="title" placeholder="Title">
+    </div>
+    <div class="mb-3">
+      <input type="number" name="price" id="price" placeholder="Price">
+    </div>
+    <div class="mb-3">
+      <input type="text" name="thumbnail" id="thumbnail" placeholder="Thumbnail">
+    </div>
+
+    <button id="load">Cargar</button>
+  </form>
+
+
+<div id="listaProductos" class="container mt-3">
+    <h2>Lista de Productos</h2>
+
+    {{#if listExists}}
+
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">ID</th>
+        <th scope="col">TITLE</th>
+        <th scope="col">PRICE</th>
+        <th scope="col">IMAGEN</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        {{#each products}}
+        <tr>
+        <th scope="row">{{this.id}}</th>
+        <td>{{this.title}}</td>
+        <td>${{this.price}}</td>
+        <td><img src={{this.thumbnail}} alt="" style="width:100px; height:100px"></td>
+        </tr>
+        {{/each}}
+        
+    </tbody>
+    </table>
+    {{else}}
+    <h1>No hay productos!</h1>
+    {{/if}}
+    
+</div>
+
+<div class="container mt-3">
+    <h2>Chat</h2>
+    <div id="messages"></div>    
+
+        <form id="chat">
+            <input type="text" id="mail" placeholder="Correo" >
+            <input type="text" id="texto" placeholder="Cuéntanos algo...">
+            <input type="submit" value="Enviar">
+        </form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="../public/main.js"></script>
+
+
